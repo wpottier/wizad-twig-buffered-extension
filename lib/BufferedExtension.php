@@ -18,6 +18,14 @@ class BufferedExtension extends \Twig_Extension
         return 'buffered';
     }
 
+    public function getGlobals()
+    {
+        return [
+            'buffered_node' => new BufferedStorage(),
+        ];
+    }
+
+
     public function getTokenParsers()
     {
         return [

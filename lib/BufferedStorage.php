@@ -23,7 +23,7 @@ class BufferedStorage
 
     public function getBufferContent($buffer, $exceptionOnFail = false)
     {
-        if (!array_key_exists($buffer, $this->buffers['buffered_node'])) {
+        if (!array_key_exists($buffer, $this->buffers)) {
             if ($exceptionOnFail) {
                 throw new \Twig_Error(sprintf('Missing buffer named %s', $buffer));
             }
