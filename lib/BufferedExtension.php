@@ -25,13 +25,6 @@ class BufferedExtension extends \Twig_Extension
         ];
     }
 
-    public function getGlobals()
-    {
-        return [
-            'buffered_node' => [],
-        ];
-    }
-
     public function getFunctions()
     {
         return [
@@ -45,7 +38,7 @@ class BufferedExtension extends \Twig_Extension
 
     public function renderBuffered(\Twig_Environment $twig, $context, $name, $exceptionOnFail = false)
     {
-        if (!array_key_exists($name, $context['buffered_node'])) {
+        if (!array_key_exists('buffered_node', $context)) {
             if ($twig->isDebug() && $exceptionOnFail) {
                 throw new \Twig_Error(sprintf('Missing buffer named %s', $name));
             }
@@ -53,6 +46,6 @@ class BufferedExtension extends \Twig_Extension
             return '';
         }
 
-        return $context['buffered_node'][$name];
+        return $context['buffered_node']->getBufferContent($name, $twig->isDebug() && $exceptionOnFail);
     }
 }

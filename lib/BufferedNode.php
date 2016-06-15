@@ -24,15 +24,8 @@ class BufferedNode extends Twig_Node
     {
         $compiler
             ->addDebugInfo($this)
-            ->write("if (!isset(\$context['buffered_node'])) { \$context['buffered_node'] = array(); }\n\n")
-            ->write("if (!isset(\$context['buffered_node']['{$this->getAttribute('name')}'])) {\n")
-            ->indent();
-
-        $compiler
-            ->write("\$context['buffered_node']['{$this->getAttribute('name')}'] = '';\n")
-            ->outdent()
-            ->write("}\n\n")
-        ;
+            ->write("if (!isset(\$context['buffered_node'])) { \$context['buffered_node'] = new \\Wizad\\TwigBufferedExtension\\BufferedStorage(); }\n\n")
+            ;
 
         $compiler
             ->write(sprintf("\$buffered_%s = function (\$context)\n", spl_object_hash($this)), "{\n")
@@ -48,8 +41,8 @@ class BufferedNode extends Twig_Node
 
         $compiler
             ->write(
-                "\$context['buffered_node']['{$this->getAttribute('name')}'] .=",
-                sprintf("\$buffered_%s(\$context);\n", spl_object_hash($this))
+                "\$context['buffered_node']->addToBuffer('{$this->getAttribute('name')}', ",
+                sprintf("\$buffered_%s(\$context));\n", spl_object_hash($this))
             );
     }
 }
