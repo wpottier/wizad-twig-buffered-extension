@@ -15,7 +15,7 @@
     "twig/twig": "~1.20|~2.0"
   },
   "autoload": {
-    "psr-0": { "Wizad\\TwigBufferedExtension": "lib/" }
+    "psr-4": { "Wizad\\TwigBufferedExtension": "lib/" }
   },
   "minimum-stability": "dev",
   "extra": {
