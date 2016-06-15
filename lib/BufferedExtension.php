@@ -35,7 +35,7 @@ class BufferedExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_Function('buffered', [$this, 'renderBuffered'], [
+            new \Twig_SimpleFunction('buffered', [$this, 'renderBuffered'], [
                 'needs_context' => true,
                 'needs_environment' => true,
                 'is_safe' => ['*' => true],
