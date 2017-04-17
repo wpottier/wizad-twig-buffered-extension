@@ -11,7 +11,7 @@
 
 namespace Wizad\TwigBufferedExtension;
 
-class BufferedExtension extends \Twig_Extension
+class BufferedExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     public function getName()
     {
